@@ -1,0 +1,15 @@
+server:
+  port: 8888
+
+eureka:
+  instance:
+    hostname: localhost
+    lease-expiration-duration-in-seconds: 30  #表示eureka server至上一次收到client的心跳后，等下一次心跳的超时时间，在这个时间内若没收到下一次心跳，则将移除该instance，默认90s。
+    lease-renewal-interval-in-seconds: 10 #服务续约间隔时间
+  server:
+    enable-self-preservation: false #关闭保护机制，以确保注册中心可以将不可用的实例正确剔除
+  client:
+    register-with-eureka: false #不注册自己
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

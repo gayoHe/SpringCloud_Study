@@ -1,0 +1,20 @@
+server:
+  port: 7777
+  context-path: /${spring.application.name}
+
+#############################spring配置#############################
+spring:
+  application:
+    name: auth-server
+
+
+#############################eureka配置#############################
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  http://127.0.0.1:8888/eureka/
+    eureka-server-read-timeout-seconds: 60
+
+
+
+

@@ -1,0 +1,52 @@
+server:
+  port: 9884
+  context-path: /${spring.application.name}
+
+#############################spring配置#############################
+spring:
+  application:
+    name: cloud-web
+
+############################################################
+# spring-boot-starter-actuator，监控管理，查看端点信息，部分端点的访问需要鉴权,可将安全校验关闭，生产环境下需设为true
+management:
+  security:
+    enabled: true
+  context-path: /actuator #为了端点安全，增加前缀
+
+endpoints:
+  health:
+    path: /checkHealth #修改/health端点的原始路径
+
+#############################eureka配置#############################
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  http://127.0.0.1:8888/eureka/
+    eureka-server-read-timeout-seconds: 180
+  instance:
+    health-check-url-path: /${endpoints.health.path} #修改/health端点的原始路径
+
+########重试策略########
+cloudservice:
+  ribbon:
+    ConnectTimeout: 500  #请求连接的超时时间
+    ReadTimeout: 2000  #请求处理的超时时间
+    okToRetryOnAllOperations: true  #对所有操作都进行重试
+    MaxAutoRetriesNextServer: 2 #切换实例的重试次数
+    MaxAutoRetries: 1  #对当前实例的重试次数
+
+############熔断器配置##############
+#feign:
+#  hystrix:
+#    enable: true #开启熔断器
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#             timeoutInMilliseconds: 5000  #熔断器超时时间应大于ribbon的超时时间，不然不会触发重试
+
+
+

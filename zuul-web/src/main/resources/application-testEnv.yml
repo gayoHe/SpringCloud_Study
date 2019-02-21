@@ -1,0 +1,49 @@
+server:
+  port: 9884
+#  context-path: /${spring.application.name}
+
+#############################spring配置#############################
+spring:
+  application:
+    name: zuul-web
+
+
+#############################eureka配置#############################
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  http://127.0.0.1:8888/eureka/
+    eureka-server-read-timeout-seconds: 60
+zuul:
+  routes:
+    cloudservice:
+      path: /cloudservice/**
+      serviceId: cloudservice
+  retryable: true #开启重试机制
+  AccessFilter:
+    pre:
+      disable: true #关闭AccessFilter过滤器
+
+ribbon:
+  MaxAutoRetries: 2 #对当前实例的重试次数
+  MaxAutoRetriesNextServer: 1 #切换实例的重试次数
+
+
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      access-token-uri: http://localhost:7777/auth-server/oauth/token #令牌端点
+      user-authorization-uri: http://localhost:7777/auth-server/oauth/authorize #授权端点
+      client-id: zuul_web #Oauth2客户端ID
+      client-secret: secret #Oauth2客户端密钥
+    resource:
+      jwt:
+        key-value: springcloud123 #使用对称加密方法，默认算法为HS256
+
+
+
+
+
+
