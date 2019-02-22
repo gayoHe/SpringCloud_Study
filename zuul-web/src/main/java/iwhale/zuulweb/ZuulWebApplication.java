@@ -33,4 +33,5 @@ public class ZuulWebApplication extends WebSecurityConfigurerAdapter {
     public AccessFilter accessFilter(){
         return new AccessFilter();
     }
+
 }

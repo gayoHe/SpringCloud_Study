@@ -22,7 +22,7 @@ public class OauthConfiguration extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception{
         clients.inMemory()
-                .withClient("zuul_web")
+                .withClient("zuul_web")   //需要与zuul-web模块yml里的client-id一致
                 .secret("secret")
                 .scopes("WRIGTH","read")
                 .autoApprove(true)
