@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      label: master #指定请求分支
+      uri: http://localhost:9885  #请求config-server地址
+      name: config-info #请求远程文件名，多个用逗号隔开
+      profile: dev

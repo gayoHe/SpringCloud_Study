@@ -1,19 +1,21 @@
 server:
   port: 9885
-  context-path: /${spring.application.name}
+  #context-path: /${spring.application.name}
 
 #############################spring配置#############################
 spring:
   application:
     name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/gayoHe/Config-File.git
+          username: gayoHe
+          password: hjy5845201314
+          search-paths: file
 
 
-#############################eureka配置#############################
-eureka:
-  client:
-    serviceUrl:
-      defaultZone:  http://127.0.0.1:8888/eureka/
-    eureka-server-read-timeout-seconds: 60
 
 
 

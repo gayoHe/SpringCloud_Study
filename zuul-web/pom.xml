@@ -67,6 +67,11 @@
             <version>2.1.0</version>
         </dependency>-->
 
+        <!--...................配置中心客户端.............................-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-client</artifactId>
+        </dependency>
     </dependencies>
 
     <!--idea自动提示引入依赖，但是没有需要的版本,如spring-cloud-starter-eureka-server。这就是一个典型的版本老旧的问题。
